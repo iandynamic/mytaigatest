@@ -37,4 +37,16 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 	libxslt-dev \
 	&& rm -rf /var/lib/apt/lists/*
 	
-RUN groupadd -r taiga && useradd -d ${homedir} -r -g taiga taiga -m 
+RUN groupadd -r taiga && useradd -d ${homedir} -r -g taiga taiga -m
+
+USER taiga
+
+WORKDIR ${homedir}
+RUN mkdir -p ~/logs
+
+RUN git clone https://github.com/taigaio/taiga-back.git taiga-back
+WORKDIR ${homedir}/taiga-back
+RUN git checkout 3.1.0 -b stable
+RUN mkvirtualenv -p /usr/bin/python3.5 taiga
+
+RUN pip install -r requirements.txt

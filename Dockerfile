@@ -47,6 +47,9 @@ RUN mkdir -p ~/logs
 RUN git clone https://github.com/taigaio/taiga-back.git taiga-back
 WORKDIR ${homedir}/taiga-back
 RUN git checkout 3.1.0 -b stable
+
+RUN bash
 RUN mkvirtualenv -p /usr/bin/python3.5 taiga
 
+RUN pip install --upgrade pip setuptools
 RUN pip install -r requirements.txt

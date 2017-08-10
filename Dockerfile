@@ -53,6 +53,8 @@ RUN git checkout 3.1.0 -b stable
 
 #RUN pip install --upgrade pip setuptools
 #RUN pip install -r requirements.txt
-
-RUN pip3 install --upgrade pip setuptools
+USER root
+WORKDIR ${homedir}
+RUN pip3 install --upgrade pip
+RUN pip3 install --upgrade setuptools
 RUN pip3 install -r requirements.txt

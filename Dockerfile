@@ -35,6 +35,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y -q \
 	virtualenvwrapper \
 	libxml2-dev \
 	libxslt-dev \
+	libssl-dev \
 	&& rm -rf /var/lib/apt/lists/*
 	
 RUN groupadd -r taiga && useradd -d ${homedir} -r -g taiga taiga -m

@@ -4,11 +4,11 @@ FROM ubuntu:16.04
 LABEL maintainer="ian.dynamic@outlook.com"
 LABEL version="3.1.0"
 LABEL description="LOREM IPSUM"
-LABEL created="2017-08-09"
+LABEL created="2017-08-10"
 
 ENV homedir="/opt/taiga"
 
-RUN apt-get update && apt-get install --no-install-recommends -y \
+RUN apt-get update && apt-get install --no-install-recommends -y -q \
 	build-essential \
 	git-core \
 	binutils-doc \
@@ -48,8 +48,11 @@ RUN git clone https://github.com/taigaio/taiga-back.git taiga-back
 WORKDIR ${homedir}/taiga-back
 RUN git checkout 3.1.0 -b stable
 
-RUN bash
-RUN mkvirtualenv -p /usr/bin/python3.5 taiga
+#RUN bash
+#RUN mkvirtualenv -p /usr/bin/python3.5 taiga
 
-RUN pip install --upgrade pip setuptools
-RUN pip install -r requirements.txt
+#RUN pip install --upgrade pip setuptools
+#RUN pip install -r requirements.txt
+
+RUN pip3 install --upgrade pip setuptools
+RUN pip3 install -r requirements.txt

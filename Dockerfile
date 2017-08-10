@@ -61,3 +61,5 @@ RUN chown -R taiga:taiga $homedir
 USER taiga
 WORKDIR ${homedir}
 
+EXPOSE 8000
+CMD ["python3", "manage.py runserver"]

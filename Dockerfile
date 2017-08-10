@@ -39,8 +39,6 @@ RUN apt-get update && apt-get install --no-install-recommends -y -q \
 	
 RUN groupadd -r taiga && useradd -d ${homedir} -r -g taiga taiga -m
 
-USER taiga
-
 WORKDIR ${homedir}
 RUN mkdir -p ~/logs
 
@@ -53,8 +51,11 @@ RUN git checkout 3.1.0 -b stable
 
 #RUN pip install --upgrade pip setuptools
 #RUN pip install -r requirements.txt
-USER root
-WORKDIR ${homedir}
 RUN pip3 install --upgrade pip
 RUN pip3 install --upgrade setuptools
 RUN pip3 install -r requirements.txt
+
+USER taiga
+RUN chown -R taiga:taiga $homedir
+WORKDIR ${homedir}
+

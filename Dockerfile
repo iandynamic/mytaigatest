@@ -4,7 +4,7 @@ FROM ubuntu:16.04
 LABEL maintainer="ian.dynamic@outlook.com"
 LABEL version="3.1.0"
 LABEL description="LOREM IPSUM"
-LABEL created="2017-08-10"
+LABEL created="2017-08-18"
 
 ENV homedir="/opt/taiga"
 
@@ -59,7 +59,7 @@ RUN pip3 install -r requirements.txt
 RUN chown -R taiga:taiga $homedir
 
 USER taiga
-WORKDIR ${homedir}
+WORKDIR ${homedir}/taiga-back
 
 EXPOSE 8000
 CMD ["python3", "manage.py runserver"]
